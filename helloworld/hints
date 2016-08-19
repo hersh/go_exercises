@@ -1,0 +1,31 @@
+Every go file starts with a "package" line, saying which package it is
+part of.  To make an executable instead of a library, name the package
+"main".  The package line then looks like this:
+
+  package main
+
+Next we import other libraries needed by this file.  If only one
+library is needed, it can be imported on one line like this:
+
+  import "fmt"
+
+This imports a text formatting package.
+
+To import multiple packages, you can say import once and put the list
+of packages in a parenthesized list, like so:
+
+  import (
+          "fmt"
+          "os"
+  )
+
+When writing an executable, there must exist a function called "main",
+taking no arguments and returning nothing.  That looks like this:
+
+  func main() {
+  }
+
+To print text followed by a newline, use the "Println" function in
+package fmt:
+
+  fmt.Println("my text")
