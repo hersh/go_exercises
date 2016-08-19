@@ -10,7 +10,7 @@ func main() {
 	if len(os.Args) > 1 {
 		line = ""
 		for _, arg := range os.Args[1:] {
-			line = line + arg + " "
+			line += arg + " "
 		}
 	}
 	for {

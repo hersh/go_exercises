@@ -1,1 +1,30 @@
-TODO: hints for yes.
+Without the command-line arguments requirement, this program is very simple.
+
+Command line arguments are described in printn/hints.
+
+Here you want to build up a string containing all the command line
+arguments separated by spaces.
+
+To combine two strings, you use the "+" operator, like so:
+
+  s1 = "foo"
+  s2 = "bar"
+  s = s1 + s2
+
+Now s is "foobar".
+
+If you want to grow the same string more and more, you can use something like:
+
+  s = ""
+  s = s + "foo"
+  s = s + "bar"
+
+Now s is "foobar" again.
+
+Each time you do the assignment like s = s + "foo", you are saying the
+new value of the variable s should be the result of adding the old
+variable s and the string "foo".
+
+The pattern of "v = v + something" is so common in programming, there
+is a shortcut for it: "v += something".  Both do the same thing, both
+are valid.
