@@ -7,10 +7,10 @@ Each exercise subdirectory has 3 files:
 * **hints**: hints to help you along
 * Source file: A source file giving my answer to the exercise if you want to look and see how I did part of it.  Named for the exercise.
 
-These are intended to be ordered in order of increasing difficulty.
-
 Exercises:
 ----------
+
+(These are intended to be ordered in order of increasing difficulty.)
 
 * [Hello world](http://github.com/hersh/go_exercises/tree/master/helloworld)
 * [Print numbers from 1 to 20](http://github.com/hersh/go_exercises/tree/master/print20)
