@@ -15,7 +15,6 @@ Exercises:
 * [Hello world](http://github.com/hersh/go_exercises/tree/master/helloworld)
 * [Print numbers from 1 to 20](http://github.com/hersh/go_exercises/tree/master/print20)
 * [Print numbers from 1 to N](http://github.com/hersh/go_exercises/tree/master/printn)
-    * where N is a command-line argument
 * [Unix "yes" command](http://github.com/hersh/go_exercises/tree/master/yes)
 * [Steve Cook's "fungame"](http://github.com/hersh/go_exercises/tree/master/fungame)
 * [Read integers from stdin and print them out as ordinals](http://github.com/hersh/go_exercises/tree/master/ordinals)
