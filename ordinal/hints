@@ -1,1 +1,46 @@
-TODO
+See fungame/hints to learn about reading numbers from standard input.
+
+Most numbers when converted to "ordinal" are just the number followed
+by the letters "th", like 5th or 77th.  There are 3 other
+possibilities though.  Numbers whose last digit is 1, 2, or 3 should
+use "st", "nd", or "rd", respectively.
+
+To find the last digit of a number in decimal, use the "modulo" operator, "%".
+
+  a % b
+
+Returns the remainder when you divide integer a by integer b.
+
+The last digit of a positive integer (and this assignment only cares
+about positive integers) can be found by doing:
+
+  number % 10
+
+If you have a lot of similar "if" statements to write, you can
+sometimes put them together in a switch statement.  For example:
+
+  switch foo {
+  case 3:
+          fmt.Println("three")
+  case 4:
+          fmt.Println("four")
+  case 5:
+          fmt.Println("five")
+  default:
+          fmt.Println("some other number")
+  }
+
+Is the same as:
+
+  if foo == 3 {
+          fmt.Println("three")
+  } else if foo == 4 {
+          fmt.Println("four")
+  } else if foo == 5 {
+          fmt.Println("five")
+  } else {
+          fmt.Println("some other number")
+  }
+
+Both are the same number of lines, but perhaps the "switch" version is
+a little less cluttered to read.
