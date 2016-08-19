@@ -1,0 +1,38 @@
+The documentation for the "fmt" package is here:
+  https://golang.org/pkg/fmt/
+
+fmt.Println("text") prints text and a newline.
+
+fmt.Print("text") prints text without a newline.
+
+To loop forever, use "for" with no conditions, like so:
+
+for {
+    fmt.Println("This will repeat forever.")
+}
+
+You can break out of a "for" loop with the "break" command, like so:
+
+for {
+    fmt.Println("This will just happen once.")
+    break
+}
+
+To read a string from standard-input (the user at the terminal), use
+fmt.Scanf().  fmt.Scanf takes a format string.  Common ones are: "%s"
+to read a string.  "%d" to read an integer, "%f" to read a floating
+point number.
+
+fmt.Scanf() doesn't return the thing it read in, it returns the number
+of items successfully scanned and an error value.  You probably don't
+need either of these values for this exercise.
+
+To get the data read in from fmt.Scanf(), you pass it a pointer to a
+variable that you want it to fill with data.  To read an integer, you
+could use this code:
+
+  var number int
+  fmt.Scanf("%d", &number)
+
+The "&" in front of number is the "address-of" operator.  It gives you
+a pointer to the thing after it, in this case the number variable.

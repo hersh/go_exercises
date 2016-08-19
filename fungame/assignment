@@ -1,0 +1,14 @@
+Implement fungame. It is a number-guessing game. The computer does the guessing.
+The computer always guesses 7.  Here's a sample transcript:
+
+  Welcome to fun game.
+  You think of a number and I'll try to guess it.
+  Is it 7? no
+  Is it 7? maybe
+  Is it 7? yes
+  Yay, I win!
+
+The user types "no", "maybe", and "yes" in this example.  The program
+prints all the other text.  If the user types "yes", the computer wins
+and the program ends.  Otherwise it just repeats asking "Is it 7?".
+

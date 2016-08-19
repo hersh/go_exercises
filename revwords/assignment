@@ -1,0 +1,12 @@
+Write a program that prints all its input lines, like "cat", but
+prints the words on each line in reverse order.
+
+Example input:
+
+  foo bar baz
+  My cat does not have fleas.
+
+output:
+
+  baz bar foo
+  fleas. have not does cat My

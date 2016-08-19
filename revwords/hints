@@ -1,0 +1,73 @@
+fmt.Scanf() doesn't tell you when it has reached the end of a line of
+input.  Therefore you can't really use it for this exercise because
+you won't know when your line has ended and you should start printing
+the words out backward.
+
+Package "bufio" has a "Reader" type with a ReadString() function that
+reads until it finds a certain character, which can be a newline
+('\n').
+
+To create a bufio.Reader, you use bufio.NewReader(), and you pass it
+anything that implements the io.Reader interface.  For this example we
+want to read from standard input (stdin), and package "os" defines
+that for us as os.Stdin.
+
+So to make the bufio.Reader, do this:
+
+  in := bufio.NewReader(os.Stdin)
+
+Then each time you want to read a line of input, do this:
+
+  line, err := in.ReadString('\n')
+
+When you get to the end of the file, err will equal io.EOF.
+
+To split a string into a bunch of words separated by whitespace, the
+easiest way is to use strings.Fields():
+
+  words := strings.Fields("hey baby, what's cooking?\n")
+
+Then words will be a slice of strings like so:
+  {"hey", "baby,", "what's", "cooking?"}
+
+To get the number of items in a slice, use the built-in len() function.
+"len(words)" would return 4 from the example above.
+
+To loop over a slice in order, you can use these for loops to loop
+over a slice variable called mySlice:
+
+  for i := 0; i < len(mySlice); i++ {
+    // element is mySlice[i]
+  }
+
+or
+
+  for i, item := range mySlice {
+    // element is item
+  }
+
+To loop backwards over a slice, you can't use the "range" keyword, so
+you have to use the first loop type.  That loop is counting up though:
+it starts at 0 and increments (i++) the index variable (i) as long as
+it is less than the length of the slice.
+
+The backwards loop needs to start at len(mySlice) - 1 and end with 0
+and decrement (i--) the index variable each time.
+
+A backwards loop could look like this:
+
+  for i := len(mySlice) - 1; i >= 0; i-- {
+    // element is mySlice[i]
+  }
+
+Since you are printing the results, there is no need to collect them
+into a new reversed slice, you can just print each word as you come to
+it.
+
+fmt.Print() prints to standard output without a trailing newline.
+
+fmt.Println() prints to standard out with a trailing newline.  If you
+don't give it anything to print, it just prints a newline.
+
+Both Print and Println can take any number of arguments, and it just
+prints them one after the other.

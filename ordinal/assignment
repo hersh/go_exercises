@@ -1,0 +1,15 @@
+Read integers from stdin and print them out as ordinals.
+
+Sample input:
+  1
+  10
+  3
+  42
+
+Corresponding output:
+  1st
+  10th
+  3rd
+  42nd
+
+Program should end on EOF in stdin.

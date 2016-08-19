@@ -1,0 +1,25 @@
+Implement the "yes" unix command in Go.
+
+If you run it with no arguments,
+
+  go run yes.go
+
+it just prints "yes" over and over, forever:
+
+  yes
+  yes
+  yes
+  yes
+...etc.
+
+If you give it command line arguments like so:
+
+  go run yes.go I love you
+
+it prints all the arguments over and over, forever, like so:
+
+  I love you
+  I love you
+  I love you
+  I love you
+...etc.
