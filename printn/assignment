@@ -1,0 +1,14 @@
+Print the numbers from 1 to N, where N is input as a command-line
+argument.
+
+For example:
+
+  go run printn.go 5
+
+should print
+
+  1
+  2
+  3
+  4
+  5

@@ -1,0 +1,22 @@
+Command-line arguments are available in the variable "Args" in package
+"os", written like this: "os.Args".  It is a slice of strings.  The
+first "argument" in the list is always the program being run, so the
+length of os.Args is never less than 1.  If the program is given a
+single command line argument, os.Args will have length 2, and the
+first normal argument will be in os.Args[1].
+
+To find the length of a slice named foo, use the built-in function
+"len", like this: len(foo).
+
+To convert a string like "100" into the corresponding integer, you can
+use function Atoi() in package strconv.  Atoi() returns two results:
+the number and an error.  If the error is nil, the number was read
+correctly.
+
+To write a loop that stops counting at a given number, but *includes*
+the last number in the loop, use a "<=" (less-than or equal)
+comparison instead of "<" (less-than).  For example, this loop prints "345":
+
+  for i := 3; i <= 5; i++ {
+          fmt.Print(i)
+  }
