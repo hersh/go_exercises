@@ -1,0 +1,36 @@
+The key to writing a winning program here is to implement binary
+search.  Binary search is an "order log n (written "O(log(N)")
+algorithm, meaning roughly that the number of operations needed is
+proportional to a logarithm of the number of items in question.
+
+The logarithm is the inverse operation of exponent.  For instance,
+
+   5
+  2  = 32
+
+And log (32) = 5
+       2
+
+Here 2 is the "base" of the logarithm.  Asking log-base-2 of 32 is
+like saying "to what power do I need to raise the number 2 to get the
+number 32?"
+
+This is equivalent to the number of times you need to divide 32 by 2
+to get 1.
+
+This is why a binary search should be able to guess a number between 1
+and 1,000,000 in 20 questions.  Each question of "is the number
+greater than X" can divide the number of possibilities in half.  2 to
+the 20th is 1,048,576, so after 20 questions you should have narrowed
+the possibilities down to a single number.
+
+To implement binary search, keep two variables: max and min.  Those
+keep track of the current known boundaries.  Each question should ask
+if the number is greater than whatever number is halfway between max
+and min.  If the answer is "yes" (number is greater than the middle),
+set "min" to that middle value.  If the answer is "no" (number is less
+than or equal to the middle), set "max" to that middle value.
+
+Since we are dealing with integers, at some point max and min will
+become equal to each other.  then that value must be the answer, and
+you can ask "is the number X?".

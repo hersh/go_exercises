@@ -1,0 +1,26 @@
+Write a program which plays a numerical version of twenty questions.
+
+This is like "fungame" but more fun. :)
+
+The program should say:
+
+  Think of an integer between 1 and 1000000.
+  Now I'll try to guess it, using 20 questions or less.
+
+Then it should ask a question.  It can ask if the number is greater
+than some number, like so:
+
+  Is the number greater than 3?
+
+And it can ask if the number is equal to something, like this:
+
+  Is the number 15899?
+
+All answers should be "yes" or "no".
+
+If your program asks if the number is a specific one and the user
+answers "yes", the program wins.  If the program asks 20 questions
+without finding the right number, the user wins.
+
+Even though there are a million possibilities and you only have 20
+questions, your program should be able to win every time.
