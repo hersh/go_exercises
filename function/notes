@@ -1,0 +1,253 @@
+Functions
+=========
+
+A function is a named piece of code which can have inputs and outputs.
+The inputs are called parameters and the outputs are called return
+values.
+
+There are two types of functions: regular functions and member
+functions.  We'll deal with regular functions first.
+
+Example:
+
+func add(a, b int) int {
+     c := a + b
+     return c
+}
+
+func main() {
+     sum := add(1, 2)
+     fmt.Println(sum)
+}
+
+main() is a function with no parameters and no return values. It is
+called automatically by the system when you run your program.
+
+add() is a function with two parameters, both of type int, and one
+return value, of type int.
+
+When executing "sum := add(1, 2)", here's what happens:
+
+ - The parameter 1 is copied into a new variable "a",
+ - The parameter 2 is copied into a new variable "b",
+ - The contents of the braces {} of the "add" function are executed.  (That's
+   called the "body" of the function.)
+ - The variables a and b disappear (their "scope" is just inside add().)
+ - The return value of add() (the variable "c") is put in place of
+   "add(1, 2)" in main, so it acts like "sum := 3"
+
+Because add() has return type int, we can use "add()" anywhere we can
+use an integer variable or constant:
+
+fmt.Println(add(3, 4))
+  becomes
+fmt.Println(7)
+
+number := 3 * add(12, 37)
+  becomes
+number := 3 * 49
+
+c := add(add(1, 2), 3)
+  becomes
+c := add(3, 3)
+  becomes
+c := 6
+
+When a function returns multiple values, you can't use them in
+expressions like that, you need to assign the results to variables and
+then use the variables.
+
+For example,
+
+func sumDiff(a, b int) (int, int) {
+     return a + b, a - b
+}
+
+func main() {
+     sum, diff := sumDiff(33, 22)
+     fmt.Println("sum: ", sum, ", diff: ", diff)
+}
+
+Package functions
+=================
+
+If the first letter of a function name is capitalized, that function
+can be called from other code outside its package.  If the first
+letter is lower case, the function is invisible outside the package.
+
+To call a function from outside its package, you prefix it with the
+package name and a period, like so:
+
+fmt.Println("hello")
+
+Here, "fmt" is the package, and "Println" is the function name.
+
+If we wrote our own package and wanted to make a public function, we
+just need to capitalize it:
+
+package awesome
+
+func Add(a, b int) int {
+     return a + b
+}
+
+Then from outside that package, we call it like this:
+
+import "awesome"
+
+func main() {
+     c := awesome.Add(10, 22)
+     fmt.Println(c)
+}
+
+Pointers
+========
+
+All variables in a computer program are stored in memory.  Memory is
+organized as a giant array of bytes.  Every byte has a unique address.
+Many data types consist of multiple bytes, in which case we say the
+address of the data is the address of its first byte.
+
+A pointer value is simply an address of some byte or piece of data.
+
+To find the address of a piece of data, put an ampersand "&" in front
+of it:
+
+     a := 12
+     p := &a
+
+Now p has the type "*int", read as "pointer to int".
+
+To motivate the use of pointers, we need to talk about how function
+parameters and return values are implemented.
+
+When we call functions in go, the parameters and return values are
+copied back and forth.  This means that if you pass a variable to a
+function, then change the parameter in the function, the original
+variable will not be changed.
+
+func increase(a int) {
+     a = a + 10
+}
+
+func main() {
+     b := 3
+     increase(b)
+     fmt.Println(b)
+}
+
+This program prints 3, not 13.  The reason is that the value of "b"
+(3) is copied into the parameter "a" when increase() is called.  So
+when increase changes the value of "a", it does not affect "b" in
+main().
+
+However, if we passed a pointer to an integer, we could get the behavior we want:
+
+func increase(a *int) {
+     *a = *a + 10
+}
+
+func main() {
+     b := 3
+     increase(&b)
+     fmt.Println(b)
+}
+
+This program prints 13.  The data we copy into the parameter "a" this
+time is the address of the variable b, not the value 3 like before.
+
+Now parameter "a" is of type "*int", so when we want to get the
+integer it is pointing to (3), we say "*a" (read "star a").  "*a" at
+first evaluates to 3, therefore:
+
+*a = *a + 10
+  becomes
+*a = 3 + 10
+
+When "*a" is on the left side of an "=", it means "the data pointed to
+by 'a' takes the value of ..."
+
+Let's look in more detail at the memory.
+
+At the start it might look like this in memory (an int is 4 bytes)
+
+address  1000 1004 1008 1012
+value       0    0    0    0
+
+Then in main we execute "b := 3".  Let's say "b" is allocated at
+address 1000, so then we have:
+
+address  1000 1004 1008 1012
+value       3    0    0    0
+
+and b is 3 and &b is 1000.
+
+Then we call increase(&b).  Let's say "a" is allocated at address
+1004.  A pointer on a 64-bit machine is 8 bytes.  Then:
+
+address  1000 1004 1008 1012
+value       3    1000      0
+
+... because we passed &b as the parameter to increase(), so 1000 gets
+copied into a.
+
+Then we do *a = *a + 10.  The "*" means to "dereference" or follow the
+pointer, or take the data at the given address.  Since "a" is 1000, we
+take the data at address 1000, which is 3.
+
+So:
+*a = *a + 10
+  becomes
+*1000 = *1000 + 10
+  becomes
+*1000 = 3 + 10
+  becomes
+*1000 = 13
+
+Now when a pointer is dereferenced on the left side of an equals sign
+like this, it acts similar to when a variable is on the left side of
+an equals sign, and the thing being pointed at takes the value of the
+right side.
+
+So then
+
+address  1000 1004 1008 1012
+value      13    1000      0
+
+Then when we go back to main(), b is still stored at address 1000, so
+when we print b, we see 13.
+
+Member functions
+================
+
+The second type of functions are "member functions".  A member
+function is one that is attached to some piece of data.  You can think
+of package functions as being attached to their package, and member
+functions as being attached to their piece of data.
+
+The "attached" piece of data gets passed to the function just like the
+other parameters, but with a different syntax.
+
+You can attach member functions to any piece of data as long as you
+define the type yourself.
+
+Example:
+
+// Define our new type
+type Employee struct {
+     name   string
+     salary int
+}
+
+// Define a member function for a pointer to it.
+func (emp *Employee) GiveRaise(salaryIncrease int) {
+     emp.salary = emp.salary + salaryIncrease
+}
+
+// Use it
+func main() {
+     emp := &Employee{name: "Joanna", salary: 100000}
+     emp.GiveRaise(70000)
+     fmt.Println("Congrats ", emp.name, " your new salary is $", emp.salary)
+}
+
